@@ -1,0 +1,4 @@
+Tissue	Total_DMRs	Hypermethylated	Hypomethylated	Mean_MeanDiff	Median_Width
+Blood	78	69	9	0.0564991490322432	205
+Sperm	120	97	23	0.0403922620686902	207.5
+Overlap	18	15	3	0.0484125101660791	204
