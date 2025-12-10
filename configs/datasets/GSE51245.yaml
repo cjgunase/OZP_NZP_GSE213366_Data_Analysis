@@ -1,0 +1,42 @@
+# GSE51245 Dataset Configuration
+# External validation blood cohort
+
+name: GSE51245
+description: "External validation dataset with blood samples for independent testing"
+geo_accession: GSE51245
+publication: null
+
+# Sample information
+n_samples: 39
+tissues:
+  - Blood
+has_matched_pairs: false
+fertility_status:
+  - fertile
+  - infertile
+
+# Data files (paths relative to project root)
+files:
+  methylation: classifier/data/external/GSE51245/GSE51245_CoRSIV_probes.csv
+  metadata: classifier/data/external/GSE51245/metadata.csv
+
+# Column name mappings
+metadata_columns:
+  sample_id: sample_id
+  status: status
+
+# Class label mappings (different from primary dataset)
+class_mapping:
+  fertile: 0
+  infertile: 1
+
+# Data characteristics
+data_format:
+  index_column: 0
+  transpose: true
+  has_avg_beta_suffix: true  # Columns have .AVG_Beta suffix
+  has_x_prefix: false
+
+# Use case
+purpose: external_validation
+validation_type: blood_to_blood

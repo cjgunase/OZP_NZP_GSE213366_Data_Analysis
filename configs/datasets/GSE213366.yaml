@@ -1,0 +1,58 @@
+# GSE213366 Dataset Configuration
+# Primary dataset with matched blood-sperm pairs for fertility classification
+
+name: GSE213366
+description: "Primary dataset with matched blood-sperm pairs from normozoospermic and oligozoospermic individuals"
+geo_accession: GSE213366
+publication: null  # Add publication reference when available
+
+# Sample information
+n_samples: 70
+n_individuals: 35
+tissues:
+  - Blood
+  - Sperm
+has_matched_pairs: true
+fertility_status:
+  - Normozoospermia
+  - Oligozoospermia
+
+# Data files (paths relative to project root)
+files:
+  # Full EPIC array matrix
+  methylation_full: data/raw/GSE213366_matrix_processed.csv
+  methylation_cleaned: data/raw/GSE213366_matrix_cleaned.csv
+
+  # Probe subset matrices
+  corsiv_probes: data/raw/GSE213366_CoRSIV_2023.csv
+  control_probes: data/raw/GSE213366_Controls.csv
+
+  # Metadata
+  metadata: data/metadata/sample_tissue_individual_map.csv
+
+  # Pre-computed analysis results
+  blood_sperm_correlation: classifier/data/blood_sperm_correlation_results.csv
+
+# Column name mappings (for standardization across datasets)
+metadata_columns:
+  sample_id: sample_name
+  tissue: tissue
+  status: status
+  individual: Individual_ID
+  geo_accession: geo_accession
+
+# Class label mappings
+class_mapping:
+  Normozoospermia: 0
+  Oligozoospermia: 1
+
+# Data characteristics
+data_format:
+  index_column: 0  # First column is probe IDs
+  transpose: true  # Need to transpose for samples as rows
+  has_x_prefix: true  # R adds X prefix to numeric column names
+
+# Quality control parameters
+qc:
+  min_detection_p: 0.01
+  min_beads: 3

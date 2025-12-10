@@ -1,0 +1,41 @@
+# GSE149318 Dataset Configuration
+# Blood-sperm correlation reference dataset
+
+name: GSE149318
+description: "Large dataset for blood-sperm correlation analysis with matched tissue pairs"
+geo_accession: GSE149318
+publication: null
+
+# Sample information
+n_samples: 179
+tissues:
+  - whole blood
+  - sperm
+has_matched_pairs: true
+# Note: This dataset doesn't have fertility status classification
+
+# Data files (paths relative to project root)
+files:
+  methylation: classifier/data/external/GSE149318/GSE149318_CoRSIV_probes.csv
+  metadata: classifier/data/external/GSE149318/GSE149318_sample_tissue_type.csv
+
+# Column name mappings
+metadata_columns:
+  sample_id: sample_name
+  tissue: tissue_type
+  match_id: match
+
+# Tissue type standardization
+tissue_mapping:
+  "whole blood": Blood
+  "sperm": Sperm
+
+# Data characteristics
+data_format:
+  index_column: 0
+  transpose: true
+  has_x_prefix: false
+
+# Use case
+purpose: correlation_analysis
+validation_type: blood_sperm_correlation

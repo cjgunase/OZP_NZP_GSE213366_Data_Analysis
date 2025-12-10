@@ -1,0 +1,42 @@
+# CoRSIV Probe Set Configuration
+# Correlated Regions of Systemic Interindividual Variation
+
+name: CoRSIV
+description: "Probes in Correlated Regions of Systemic Interindividual Variation - methylation marks that show consistent patterns across tissues within individuals"
+
+# Scientific rationale
+rationale: |
+  CoRSIV probes are selected because they exhibit correlated methylation patterns
+  across different tissues within the same individual. This property makes them
+  ideal for developing blood-based biomarkers that can predict methylation
+  status in less accessible tissues (like sperm).
+
+# Probe information
+n_probes: ~9000
+array_platform: Illumina EPIC (850K)
+
+# Data files for each dataset (relative to project root)
+files:
+  GSE213366: data/raw/GSE213366_CoRSIV_2023.csv
+  GSE51245: classifier/data/external/GSE51245/GSE51245_CoRSIV_probes.csv
+  GSE149318: classifier/data/external/GSE149318/GSE149318_CoRSIV_probes.csv
+
+# Selection criteria
+selection_criteria:
+  method: "Cross-tissue correlation"
+  min_tissues: 2
+  min_correlation: 0.5
+  source: "Pre-defined CoRSIV list"
+
+# Feature selection for classification
+feature_selection:
+  method: correlation
+  # For blood-sperm classification, select probes with high blood-sperm correlation
+  blood_sperm_correlation_threshold: 0.75
+  correlation_file: classifier/data/blood_sperm_correlation_results.csv
+
+# Recommended analyses
+recommended_for:
+  - classification  # Fertility classification
+  - cross_tissue_prediction  # Predicting one tissue from another
+  - biomarker_development  # Non-invasive biomarker identification

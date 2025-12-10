@@ -1,0 +1,35 @@
+# Control Probes Configuration
+# EPIC array control/reference probes
+
+name: Controls
+description: "Control probes from the Illumina EPIC array for quality control and normalization reference"
+
+# Scientific rationale
+rationale: |
+  Control probes serve as reference markers on the EPIC array. They can be used
+  as negative controls in classification experiments to establish baseline
+  performance, or for quality control assessment of array performance.
+
+# Probe information
+n_probes: ~850
+array_platform: Illumina EPIC (850K)
+
+# Data files for each dataset (relative to project root)
+files:
+  GSE213366: data/raw/GSE213366_Controls.csv
+
+# Selection criteria
+selection_criteria:
+  method: "Pre-defined array controls"
+  source: "Illumina EPIC manifest"
+
+# Feature selection for classification
+feature_selection:
+  method: none  # Use all control probes (or variance filtering)
+  variance_threshold: 0.01
+
+# Recommended analyses
+recommended_for:
+  - quality_control  # QC assessment
+  - negative_control  # Baseline comparison for classification
+  - normalization  # Reference for data normalization

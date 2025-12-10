@@ -1,0 +1,58 @@
+# Full EPIC Array Probe Set Configuration
+# All probes from Illumina EPIC array
+
+name: EPIC_full
+description: "Complete Illumina EPIC array probe set (~850,000 probes) for comprehensive methylation analysis"
+
+# Scientific rationale
+rationale: |
+  The full EPIC array provides comprehensive genome-wide methylation coverage.
+  Use this probe set for unbiased discovery analyses, genome-wide association
+  studies, or when you want to identify novel biomarkers without restriction
+  to pre-defined probe subsets.
+
+# Probe information
+n_probes: ~850000
+array_platform: Illumina EPIC (850K)
+
+# Data files for each dataset (relative to project root)
+files:
+  GSE213366: data/raw/GSE213366_matrix_processed.csv
+
+# Annotation files
+annotations:
+  hg38: data/metadata/EPIC.hg38.txt
+
+# Selection criteria
+selection_criteria:
+  method: "All array probes"
+  filter_cross_reactive: true
+  filter_snp_probes: true
+
+# Feature selection for classification
+feature_selection:
+  # Multiple options for full array analysis
+  methods:
+    - name: variance
+      description: "Select probes with high variance"
+      variance_threshold: 0.01
+    - name: differential
+      description: "Select probes with significant group differences"
+      fdr_threshold: 0.05
+    - name: correlation
+      description: "Select probes with high blood-sperm correlation"
+      correlation_threshold: 0.75
+
+# Recommended analyses
+recommended_for:
+  - dmr_analysis  # Differentially Methylated Region identification
+  - epigenome_wide_association  # EWAS
+  - discovery  # Novel biomarker discovery
+  - visualization  # Gene-level methylation plots
+
+# Memory considerations
+notes: |
+  Full EPIC matrix is very large (~2.6 GB). Consider:
+  - Using chunked reading for memory efficiency
+  - Pre-filtering probes before loading
+  - Using compressed file formats

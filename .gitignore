@@ -1,18 +1,116 @@
-# System files
+# ===========================================
+# DNA Methylation Analysis - Git Ignore
+# ===========================================
+
+# ----- System Files -----
 .DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ----- IDE/Editor -----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+
+# ----- R -----
 .Rhistory
 .Rapp.history
-.ipynb_checkpoints
+.RData
+.Ruserdata
+*.Rproj.user
 
-# Large Data Files
-data/raw/
-data/processed/GSE213366_matrix_processed.csv
-
-# Temporary files
-temp/
+# ----- Python -----
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Virtual environments if any
+# Virtual environments
+.env
 .venv
 env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ----- Jupyter Notebooks -----
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+.virtual_documents/
+
+# ----- Large Data Files -----
+# Raw data (too large for git)
+data/raw/
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# External datasets
+classifier/data/external/GSE51245/*.csv
+classifier/data/external/GSE149318/*.csv
+
+# Large annotation files
+data/metadata/EPIC.hg38.txt
+
+# ----- Output Files -----
+# Keep directory structure but ignore generated files
+results/plots/*.pdf
+results/plots/*.png
+results/tables/*.csv
+results/tables/*.txt
+results/classifier/
+!results/plots/.gitkeep
+!results/tables/.gitkeep
+
+classifier/output/figures/*.pdf
+classifier/output/results/*.csv
+!classifier/output/figures/.gitkeep
+!classifier/output/results/.gitkeep
+
+# Notebook outputs
+notebooks/analysis_tutorial_files/
+
+# ----- Temporary Files -----
+temp/
+*.tmp
+*.temp
+*.log
+*.bak
+
+# ----- Claude/AI artifacts -----
+.claude/
+
+# ----- Project-specific -----
+# Machine-specific probe files
+*-macbookpro*.csv
+*-macbook*.csv
+
+# Backup files
+*.backup
+*.orig
+
+# Test outputs
+test_output/
